@@ -1,7 +1,10 @@
 package net.akorp.orus;
 
 import com.mojang.logging.LogUtils;
+import net.akorp.orus.item.ModCreativemodeTab;
+import net.akorp.orus.item.ModItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -26,6 +29,10 @@ public class OrusMod
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModCreativemodeTab.register(modEventBus);
+
+        ModItems.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -39,9 +46,11 @@ public class OrusMod
     {
     }
 
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {
-
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
+            event.accept(ModItems.GALLIUM);
+            event.accept(ModItems.REFINEDGALLIUM);
+        }
     }
 
     @SubscribeEvent
