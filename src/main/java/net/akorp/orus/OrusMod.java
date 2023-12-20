@@ -1,6 +1,7 @@
 package net.akorp.orus;
 
 import com.mojang.logging.LogUtils;
+import net.akorp.orus.block.ModBlocks;
 import net.akorp.orus.item.ModCreativemodeTab;
 import net.akorp.orus.item.ModItems;
 import net.minecraft.client.Minecraft;
@@ -32,6 +33,7 @@ public class OrusMod
         ModCreativemodeTab.register(modEventBus);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -50,6 +52,7 @@ public class OrusMod
         if(event.getTabKey()== CreativeModeTabs.INGREDIENTS){
             event.accept(ModItems.GALLIUM);
             event.accept(ModItems.REFINEDGALLIUM);
+            event.accept(ModBlocks.GALLIUM_ORE);
         }
     }
 

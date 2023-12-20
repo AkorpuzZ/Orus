@@ -1,6 +1,7 @@
 package net.akorp.orus.item;
 
 import net.akorp.orus.OrusMod;
+import net.akorp.orus.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -20,6 +21,8 @@ public class ModCreativemodeTab {
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModItems.GALLIUM.get());
                 output.accept(ModItems.REFINEDGALLIUM.get());
+                output.accept((ModBlocks.GALLIUM_ORE.get()));
+
             })
             .build());
     public static void register(IEventBus eventBus){
